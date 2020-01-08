@@ -1,5 +1,6 @@
 var life = 3;
 var score = 0;
+var nb_obj = 0;
 
 function create_obstacle() {
   var ennemy = oxo.elements.createElement({
@@ -8,7 +9,7 @@ function create_obstacle() {
     obstacle: false,
     appendTo: "body"
   });
-  oxo.animation.setPosition(ennemy, { x: 1900, y: 800 });
+  oxo.animation.setPosition(ennemy, { x: 1900, y: 680 });
 }
 
 function create_item() {
@@ -18,7 +19,7 @@ function create_item() {
     obstacle: false,
     appendTo: "body"
   });
-  oxo.animation.setPosition(item, { x: 1900, y: 830 });
+  oxo.animation.setPosition(item, { x: 1900, y: 690 });
 }
 
 function create_obj() {
@@ -28,7 +29,7 @@ function create_obj() {
     obstacle: false,
     appendTo: "body"
   });
-  oxo.animation.setPosition(obj, { x: 1900, y: 840 });
+  oxo.animation.setPosition(obj, { x: 1900, y: 690 });
 }
 
 function move_obstacle() {
@@ -181,6 +182,13 @@ function collision_obj() {
   for (let i = 0; i < obj.length; i++) {
     oxo.elements.onCollisionWithElement(character, obj[i], function() {
       obj[i].remove();
+      nb_obj = nb_obj + 1;
+
+      if (nb_obj === 1) {
+        obj_gauge.style.width = "28px";
+      }
+      if (nb_obj === 2) {
+      }
     });
   }
 }
@@ -207,7 +215,7 @@ function lose() {
 
 function game() {
   var character = document.querySelector(".character");
-  oxo.animation.setPosition(character, { x: 100, y: 790 });
+  oxo.animation.setPosition(character, { x: 100, y: 670 });
   create_obstacle();
   create_item();
   random_obstacle();
