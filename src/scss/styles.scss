@@ -103,6 +103,15 @@
 
 // HOMEPAGE //
 
+@keyframes rotate {
+  0% {
+    transform: rotate(90deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 body {
   background-color: rgba(201, 51, 41, 0.8);
@@ -185,8 +194,8 @@ body {
   &__img-primary {
     width: 130px;
     padding: 50px;
-    filter: drop-shadow(0 0 1rem rgb(19, 17, 18))
-    }
+    filter: drop-shadow(0 0 1rem rgb(19, 17, 18));
+  }
 
  &__img-secondary {
     width:130px;
@@ -194,6 +203,17 @@ body {
     opacity: 0.5;
     position: relative;     
     } 
+}
+
+.select-planets {
+
+  &__img-primary:hover {
+    animation: rotate 0.8s;
+  }
+
+  &__img-secondary:hover {
+    animation: rotate 0.8s;
+  }
 }
 
 .select-planets__coming-soon-1 {
@@ -213,6 +233,7 @@ body {
 .play-button {
   display: flex;
   justify-content: center;
+  margin-top: 24px;
 
   &__button {
     color: white;
@@ -234,7 +255,7 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
-  margin-top: 40px;
+  margin-top: 70px;
  
 
   &__text {
@@ -264,7 +285,7 @@ body {
 
   &__key {
     position: absolute;
-    bottom: -32px;
+    bottom: -40px;
     background-color: white;
     font-family: calibri;
     font-size: 14px;
@@ -276,7 +297,8 @@ body {
 }
 
 .gameplay__img-details {
-  width: 400px;
+  width: 450px;
   position: absolute; 
-  right: 450px;
+  right: 320px;
+
 }
