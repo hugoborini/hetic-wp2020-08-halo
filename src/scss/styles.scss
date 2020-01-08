@@ -259,6 +259,7 @@ body {
 
     &__img {
       width: 40px;
+      
     }
   }
 
@@ -279,4 +280,26 @@ body {
   width: 400px;
   position: absolute; 
   right: 450px;
+}
+
+.box-shadow__img {
+   
+   animation: jumping 1s infinite;
+  
+
+}
+
+@keyframes jumping {
+
+  0% {
+    margin-top: 0;
+  }
+  50% {
+    margin-top: -30px;
+  }
+
+  100% {
+    margin-top: 0;
+  }
+
 }
