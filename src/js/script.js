@@ -2,41 +2,24 @@ var life = 3;
 var score = 0;
 var nb_obj = 0;
 
-function create_obstacle() {
-  var ennemy = oxo.elements.createElement({
+var move = 10;
+
+function create(str, valx, valy) {
+  var element = oxo.elements.createElement({
     type: "div",
-    class: "ennemy",
+    class: str,
     obstacle: false,
     appendTo: "body"
   });
-  oxo.animation.setPosition(ennemy, { x: 1900, y: 680 });
-}
+  oxo.animation.setPosition(element, { x: valx, y: valy });
 
-function create_item() {
-  var item = oxo.elements.createElement({
-    type: "div",
-    class: "item",
-    obstacle: false,
-    appendTo: "body"
-  });
-  oxo.animation.setPosition(item, { x: 1900, y: 690 });
+  return element;
 }
-
-function create_obj() {
-  var obj = oxo.elements.createElement({
-    type: "div",
-    class: "obj",
-    obstacle: false,
-    appendTo: "body"
-  });
-  oxo.animation.setPosition(obj, { x: 1900, y: 690 });
-}
-
 function move_obstacle() {
   setInterval(() => {
     var ennemy = document.querySelectorAll(".ennemy");
     for (let i = 0; i < ennemy.length; i++) {
-      oxo.animation.move(ennemy[i], "left", 10, true);
+      oxo.animation.move(ennemy[i], "left", move, true);
     }
   }, 10);
 }
@@ -45,7 +28,7 @@ function move_item() {
   setInterval(() => {
     var item = document.querySelectorAll(".item");
     for (let i = 0; i < item.length; i++) {
-      oxo.animation.move(item[i], "left", 10, true);
+      oxo.animation.move(item[i], "left", move, true);
     }
   }, 10);
 }
@@ -54,25 +37,26 @@ function move_obj() {
   setInterval(() => {
     var obj = document.querySelectorAll(".obj");
     for (let i = 0; i < obj.length; i++) {
-      oxo.animation.move(obj[i], "left", 10, true);
+      oxo.animation.move(obj[i], "left", move, true);
     }
   }, 10);
 }
+
 function random_obstacle() {
   setInterval(() => {
-    create_obstacle();
+    var ennemy = create("ennemy", 1900, 680);
   }, 5000);
 }
 
 function random_item() {
   setInterval(() => {
-    create_item();
+    var item = create("item", 1900, 690);
   }, 9000);
 }
 
 function random_obj() {
   setInterval(() => {
-    create_obj();
+    var obj = create("obj", 1900, 690);
   }, 12000);
 }
 
@@ -124,8 +108,12 @@ function clear_obj() {
 function jump() {
   var character = document.querySelector(".character");
   oxo.inputs.listenKey("space", function() {
-    lock = 1;
-    character.classList.toggle("jump");
+    if (!character.classList.contains("jump")) {
+      character.classList.add("jump");
+      setTimeout(() => {
+        character.classList.remove("jump");
+      }, 1500);
+    }
   });
 }
 
@@ -188,6 +176,16 @@ function collision_obj() {
         obj_gauge.style.width = "28px";
       }
       if (nb_obj === 2) {
+        obj_gauge.style.width = "56px";
+      }
+      if (nb_obj === 3) {
+        obj_gauge.style.width = "84px";
+      }
+      if (nb_obj === 4) {
+        obj_gauge.style.width = "112px";
+      }
+      if (nb_obj === 5) {
+        obj_gauge.style.width = "150px";
       }
     });
   }
@@ -216,8 +214,6 @@ function lose() {
 function game() {
   var character = document.querySelector(".character");
   oxo.animation.setPosition(character, { x: 100, y: 670 });
-  create_obstacle();
-  create_item();
   random_obstacle();
   random_item();
   random_obj();

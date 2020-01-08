@@ -2,6 +2,8 @@
 
 @import "global/layout";
 
+@import "vendors/end.scss";
+
 .header {
   display: flex;
   flex-direction: row;
@@ -19,10 +21,6 @@
   width: 150px;
   background-color: red;
   position: absolute;
-}
-
-.dgt {
-  animation: dgt 0.4s;
 }
 
 .character {
