@@ -2,7 +2,7 @@ var life = 3;
 var score = 0;
 var nb_obj = 0;
 
-var move = 10;
+var move = 5;
 
 document.addEventListener("keydown", function(e) {
   if (e.keyCode === 32) {
@@ -50,20 +50,20 @@ function move_obj() {
 
 function random_obstacle() {
   setInterval(() => {
-    var ennemy = create("ennemy", 1900, 680);
+    var ennemy = create("ennemy", 1500, 610);
   }, 5000);
 }
 
 function random_item() {
   setInterval(() => {
-    var item = create("item", 1900, 690);
+    var item = create("item", 1600, 600);
   }, 9000);
 }
 
 function random_obj() {
   setInterval(() => {
-    var obj = create("obj", 1900, 690);
-  }, 12000);
+    var obj = create("obj", 1700, 610);
+  }, 11000);
 }
 
 function clear_obstacle() {
@@ -219,7 +219,7 @@ function lose() {
 
 function game() {
   var character = document.querySelector(".character");
-  oxo.animation.setPosition(character, { x: 100, y: 670 });
+  oxo.animation.setPosition(character, { x: 100, y: 480 });
   random_obstacle();
   random_item();
   random_obj();
