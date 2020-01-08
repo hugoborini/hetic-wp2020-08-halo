@@ -1,101 +1,12 @@
 @font-face {
   font-family: "VCR MONO";
-  src: url(../assets/VCR_OSD_MONO_1.001.ttf); 
+  src: url(../assets/VCR_OSD_MONO_1.001.ttf);
 }
 
 @font-face {
   font-family: "Reenie Beanie";
   src: url(../assets/ReenieBeanie.ttf);
 }
-
-
-.header {
-  display: flex;
-  flex-direction: row;
-}
-
-.container {
-  height: 30px;
-  width: 150px;
-  background-color: wheat;
-  left: 30px;
-}
-
-.health {
-  height: 30px;
-  width: 150px;
-  background-color: red;
-  position: absolute;
-}
-
-.character {
-  position: absolute;
-  width: 90px;
-  height: 90px;
-  background-color: red;
-}
-
-.jump {
-  animation: jump 1.5s;
-}
-
-.ennemy {
-  position: absolute;
-  background-color: green;
-  width: 80px;
-  height: 80px;
-}
-
-.item {
-  width: 20px;
-  height: 20px;
-  background-color: blue;
-}
-
-.obj {
-  width: 20px;
-  height: 20px;
-  background-color: yellow;
-}
-
-.score {
-  margin-left: 200px;
-}
-
-.score_txt {
-  font-size: 30px;
-}
-
-.obj_gauge {
-  width: 10px;
-  height: 30px;
-  background-color: yellow;
-}
-
-@keyframes jump {
-  0% {
-    top: 0px;
-  }
-  50% {
-    top: -300px;
-  }
-  100% {
-    top: 0px;
-  }
-}
-
-@keyframes dgt {
-  to {
-    width: 150px;
-  }
-
-  from {
-    width: 100px;
-  }
-}
-
-
-// HOMEPAGE //
 
 @keyframes rotate {
   0% {
@@ -107,9 +18,8 @@
   }
 }
 
-.home{
+.home {
   background-color: rgba(201, 51, 41, 0.8);
-  
 }
 .block {
   display: flex;
@@ -122,13 +32,13 @@
   justify-content: center;
   z-index: 1;
 
-    &__text {
-      font-size: 120px;
-      color: white;
-      font-family: VCR MONO;
-      font-weight: bold;
-      margin-top: 50px;
-    }
+  &__text {
+    font-size: 120px;
+    color: white;
+    font-family: VCR MONO;
+    font-weight: bold;
+    margin-top: 50px;
+  }
 }
 
 .block__red-planet {
@@ -145,16 +55,16 @@
 .select-planets {
   display: flex;
   justify-content: center;
- 
-  &__arrow {
-      width: 75px;
-      opacity: 0.8;
-    }
 
-  &__primary{
+  &__arrow {
+    width: 75px;
+    opacity: 0.8;
+  }
+
+  &__primary {
     display: flex;
     justify-content: center;
-    align-items: center;  
+    align-items: center;
   }
 
   &__secondary {
@@ -162,7 +72,7 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    
+
     &::before {
       content: "Coming soon";
       background-color: black;
@@ -178,30 +88,26 @@
       opacity: 0.8;
       position: absolute;
       z-index: 1;
-
     }
-   
   }
-} 
+}
 
- .select-planets {
-
+.select-planets {
   &__img-primary {
     width: 130px;
     padding: 50px;
     filter: drop-shadow(0 0 1rem rgb(19, 17, 18));
   }
 
- &__img-secondary {
-    width:130px;
+  &__img-secondary {
+    width: 130px;
     padding: 50px;
     opacity: 0.7;
-    position: relative;     
-    } 
+    position: relative;
+  }
 }
 
 .select-planets {
-
   &__img-primary:hover {
     animation: rotate 0.8s;
   }
@@ -232,7 +138,7 @@
 
   &__button {
     color: white;
-    background-color:black;
+    background-color: black;
     border-color: black;
     width: 250px;
     border-radius: 50px;
@@ -252,16 +158,14 @@
   align-items: center;
   position: relative;
   margin-top: 70px;
- 
 
   &__text {
     font-size: 70px;
     font-family: Reenie Beanie;
     color: white;
     font-weight: medium;
-    margin-right:150px;
-    
-  }  
+    margin-right: 150px;
+  }
 
   &__box-shadow {
     display: flex;
@@ -272,7 +176,6 @@
     box-shadow: 0px 4px 80px rgba(0, 0, 0, 0.25);
     border-radius: 4px;
     margin-right: 300px;
-    
 
     &__img {
       width: 40px;
@@ -294,7 +197,6 @@
 
 .gameplay__img-details {
   width: 450px;
-  position: absolute; 
+  position: absolute;
   right: 300px;
-
 }
