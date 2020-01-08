@@ -4,6 +4,12 @@ var nb_obj = 0;
 
 var move = 10;
 
+document.addEventListener("keydown", function(e) {
+  if (e.keyCode === 32) {
+    e.preventDefault();
+  }
+});
+
 function create(str, valx, valy) {
   var element = oxo.elements.createElement({
     type: "div",
