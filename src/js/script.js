@@ -1,4 +1,4 @@
-var life = 3;
+var life = 5;
 var score = 0;
 var nb_obj = 0;
 
@@ -56,7 +56,7 @@ function random_obstacle() {
 
 function random_item() {
   setInterval(() => {
-    var item = create("item", 1700, 350);
+    var item = create("item", 1700, 380);
   }, 9000);
 }
 
@@ -132,11 +132,20 @@ function collision_obstacle() {
       ennemy[i].remove();
       life = life - 1;
 
+      if (life === 5) {
+        health.style.width = "200px";
+      }
+      if (life === 4) {
+        health.style.width = "160px";
+      }
+      if (life === 3) {
+        health.style.width = "120px";
+      }
       if (life === 2) {
-        health.style.width = "100px";
+        health.style.width = "80px";
       }
       if (life === 1) {
-        health.style.width = "50px";
+        health.style.width = "40px";
       }
       if (life === 0) {
         health.style.width = "0px";
@@ -153,17 +162,27 @@ function collision_item() {
     oxo.elements.onCollisionWithElement(character, item[i], function() {
       item[i].remove();
       life = life + 1;
+
+      if (life === 5) {
+        health.style.width = "200px";
+      }
+      if (life === 4) {
+        health.style.width = "160px";
+      }
       if (life === 3) {
-        health.style.width = "150px";
+        health.style.width = "120px";
       }
       if (life === 2) {
-        health.style.width = "100px";
+        health.style.width = "80px";
+      }
+      if (life === 1) {
+        health.style.width = "40px";
       }
       if (life === 0) {
         health.style.width = "0px";
       }
-      if (life > 3) {
-        life = 3;
+      if (life > 5) {
+        life = 5;
       }
     });
   }
