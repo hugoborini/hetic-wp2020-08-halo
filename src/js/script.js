@@ -1,10 +1,11 @@
 var life = 5;
 var score = 0;
-var nb_obj = 0;
+var nbObj = 0;
 var intervalMove;
 var randomObstacle;
 var randomItem;
 var randomObj;
+var randomObj2;
 var clearAll;
 var collisionInterval;
 var scoreInterval;
@@ -22,6 +23,7 @@ function createInterval() {
     moveElement(".ennemy");
     moveElement(".item");
     moveElement(".obj");
+    moveElement(".obj2");
   }, 10);
 
   randomObstacle = setInterval(function() {
@@ -35,10 +37,15 @@ function createInterval() {
     create("obj", 2000, 660);
   }, 12000);
 
+  randomObj2 = setInterval(function() {
+    create("obj2", 1600, 660);
+  }, 2000);
+
   clearAll = setInterval(function() {
     clearAllObject(".ennemy");
     clearAllObject(".item");
     clearAllObject(".obj");
+    clearAllObject(".obj2");
     lose();
   }, 10);
 
@@ -46,9 +53,10 @@ function createInterval() {
     collision_obstacle();
     collision_item();
     collision_obj();
+    collision_obj2();
   }, 100);
   scoreInterval = setInterval(function() {
-    time_score();
+    timeScore();
   }, 500);
 }
 
@@ -57,6 +65,7 @@ function clearAllInterval() {
   clearInterval(randomObstacle);
   clearInterval(randomItem);
   clearInterval(randomObj);
+  clearInterval(randomObj2);
   clearInterval(clearAll);
   clearInterval(collisionInterval);
   clearInterval(scoreInterval);
@@ -178,37 +187,66 @@ function collision_obj() {
   for (let i = 0; i < obj.length; i++) {
     oxo.elements.onCollisionWithElement(character, obj[i], function() {
       obj[i].remove();
-      nb_obj = nb_obj + 1;
+      nbObj = nbObj + 1;
 
-      if (nb_obj === 1) {
+      if (nbObj === 1) {
         obj_gauge.style.width = "28px";
       }
-      if (nb_obj === 2) {
+      if (nbObj === 2) {
         obj_gauge.style.width = "56px";
       }
-      if (nb_obj === 3) {
+      if (nbObj === 3) {
         obj_gauge.style.width = "84px";
       }
-      if (nb_obj === 4) {
+      if (nbObj === 4) {
         obj_gauge.style.width = "112px";
       }
-      if (nb_obj === 5) {
+      if (nbObj === 5) {
         obj_gauge.style.width = "150px";
       }
     });
   }
 }
 
-function time_score() {
-  var score_txt = document.querySelector(".score_txt");
+function collision_obj2() {
+  var character = document.querySelector(".character");
+  var obj2 = document.querySelectorAll(".obj2");
+  var obj_gauge2 = document.querySelector(".obj_gauge2");
+  for (let i = 0; i < obj2.length; i++) {
+    oxo.elements.onCollisionWithElement(character, obj2[i], function() {
+      obj2[i].remove();
+      nbObj = nbObj + 1;
+
+      if (nbObj === 1) {
+        obj_gauge2.style.width = "28px";
+      }
+      if (nbObj === 2) {
+        obj_gauge2.style.width = "56px";
+      }
+      if (nbObj === 3) {
+        obj_gauge2.style.width = "84px";
+      }
+      if (nbObj === 4) {
+        obj_gauge2.style.width = "112px";
+      }
+      if (nbObj === 5) {
+        obj_gauge2.style.width = "150px";
+      }
+    });
+  }
+}
+
+function timeScore() {
+  var scoreTxt = document.querySelector(".score_txt");
   score = score + 1;
   console.log("score");
-  score_txt.innerHTML = "Score :" + score;
+  scoreTxt.innerHTML = "Score :" + score;
 }
 
 function lose() {
   if (life === 0) {
     oxo.screens.loadScreen("end", function() {
+      end();
       clearAllInterval();
     });
   }
@@ -221,8 +259,26 @@ function game() {
   jump();
 }
 
-oxo.inputs.listenKeyOnce("enter", function() {
-  oxo.screens.loadScreen("game", function() {
-    game();
-  });
+oxo.screens.loadScreen("home", function() {
+  home();
 });
+
+function end() {
+  var restartButton = document.querySelector(".restart");
+  restartButton.addEventListener("click", function() {
+    life = 5;
+    oxo.screens.loadScreen("home", function() {
+      home();
+    });
+  });
+  console.log(restartButton);
+}
+
+function home() {
+  var playButton = document.querySelector(".play-button__button");
+  playButton.addEventListener("click", function() {
+    oxo.screens.loadScreen("game", function() {
+      game();
+    });
+  });
+}
