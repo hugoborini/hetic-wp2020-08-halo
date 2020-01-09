@@ -1,6 +1,13 @@
 var life = 5;
 var score = 0;
 var nb_obj = 0;
+var intervalMove;
+var randomObstacle;
+var randomItem;
+var randomObj;
+var clearAll;
+var collisionInterval;
+var scoreInterval;
 
 var moveSpeed = 5;
 
@@ -9,6 +16,51 @@ document.addEventListener("keydown", function(e) {
     e.preventDefault();
   }
 });
+
+function createInterval() {
+  intervalMove = setInterval(function() {
+    moveElement(".ennemy");
+    moveElement(".item");
+    moveElement(".obj");
+  }, 10);
+
+  randomObstacle = setInterval(function() {
+    create("ennemy", 1400, 640);
+  }, 5000);
+  randomItem = setInterval(function() {
+    create("item", 1700, 350);
+  }, 9000);
+
+  randomObj = setInterval(function() {
+    create("obj", 2000, 660);
+  }, 12000);
+
+  clearAll = setInterval(function() {
+    clearAllObject(".ennemy");
+    clearAllObject(".item");
+    clearAllObject(".obj");
+    lose();
+  }, 10);
+
+  collisionInterval = setInterval(function() {
+    collision_obstacle();
+    collision_item();
+    collision_obj();
+  }, 100);
+  scoreInterval = setInterval(function() {
+    time_score();
+  }, 500);
+}
+
+function clearAllInterval() {
+  clearInterval(intervalMove);
+  clearInterval(randomObstacle);
+  clearInterval(randomItem);
+  clearInterval(randomObj);
+  clearInterval(clearAll);
+  clearInterval(collisionInterval);
+  clearInterval(scoreInterval);
+}
 
 function create(str, valx, valy) {
   var element = oxo.elements.createElement({
@@ -23,75 +75,23 @@ function create(str, valx, valy) {
 }
 
 function moveElement(className) {
-  setInterval(() => {
-    var element = document.querySelectorAll(className);
-    for (let i = 0; i < element.length; i++) {
-      oxo.animation.move(element[i], "left", moveSpeed, true);
-    }
-  }, 10);
+  var element = document.querySelectorAll(className);
+  for (let i = 0; i < element.length; i++) {
+    oxo.animation.move(element[i], "left", moveSpeed, true);
+  }
 }
 
-function random_obstacle() {
-  setInterval(() => {
-    var ennemy = create("ennemy", 1400, 640);
-  }, 5000);
-}
-
-function random_item() {
-  setInterval(() => {
-    var item = create("item", 1700, 380);
-  }, 9000);
-}
-
-function random_obj() {
-  setInterval(() => {
-    var obj = create("obj", 2000, 660);
-  }, 11000);
-}
-
-function clear_obstacle() {
-  setInterval(() => {
-    var ennemy = document.querySelectorAll(".ennemy");
-    for (let i = 0; i < ennemy.length; i++) {
-      oxo.elements.onLeaveScreen(
-        ennemy[i],
-        function() {
-          ennemy[i].remove();
-        },
-        true
-      );
-    }
-  }, 10);
-}
-
-function clear_item() {
-  setInterval(() => {
-    var item = document.querySelectorAll(".item");
-    for (let i = 0; i < item.length; i++) {
-      oxo.elements.onLeaveScreen(
-        item[i],
-        function() {
-          item[i].remove();
-        },
-        true
-      );
-    }
-  }, 10);
-}
-
-function clear_obj() {
-  setInterval(() => {
-    var obj = document.querySelectorAll(".obj");
-    for (let i = 0; i < obj.length; i++) {
-      oxo.elements.onLeaveScreen(
-        obj[i],
-        function() {
-          obj[i].remove();
-        },
-        true
-      );
-    }
-  }, 10);
+function clearAllObject(className) {
+  var element = document.querySelectorAll(className);
+  for (let i = 0; i < element.length; i++) {
+    oxo.elements.onLeaveScreen(
+      element[i],
+      function() {
+        element[i].remove();
+      },
+      true
+    );
+  }
 }
 
 function jump() {
@@ -202,19 +202,14 @@ function collision_obj() {
 function time_score() {
   var score_txt = document.querySelector(".score_txt");
   score = score + 1;
+  console.log("score");
   score_txt.innerHTML = "Score :" + score;
-}
-
-function display_final_score() {
-  var display_score = document.querySelector(".final_score");
-  display_score.innerHTML = "Votre Score: " + score;
-  clearInterval(score_interval);
 }
 
 function lose() {
   if (life === 0) {
     oxo.screens.loadScreen("end", function() {
-      display_final_score();
+      clearAllInterval();
     });
   }
 }
@@ -222,32 +217,8 @@ function lose() {
 function game() {
   var character = document.querySelector(".character");
   oxo.animation.setPosition(character, { x: 100, y: 500 });
-  random_obstacle();
-  random_item();
-  random_obj();
-  moveElement(".ennemy");
-  moveElement(".item");
-  moveElement(".obj");
-
-  // move_obstacle();
-  // move_item();
-  // move_obj();
-  setInterval(() => {
-    collision_obstacle();
-    collision_item();
-    collision_obj();
-  }, 100);
+  createInterval();
   jump();
-  setInterval(() => {
-    lose();
-  }, 10);
-  var score_interval = setInterval(() => {
-    time_score();
-  }, 500);
-  time_score();
-  clear_obstacle();
-  clear_item();
-  clear_obj();
 }
 
 oxo.inputs.listenKeyOnce("enter", function() {
