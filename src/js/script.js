@@ -46,7 +46,7 @@ function random_obstacle() {
 
 function random_item() {
   setInterval(() => {
-    var item = create("item", 1700, 350);
+    var item = create("item", 1700, 380);
   }, 9000);
 }
 
