@@ -18,6 +18,7 @@
 
 $border-radius: 15px;
 $width-container: 200px;
+$font: "VCR MONO";
 
 .multi-background {
   position: absolute;
@@ -104,7 +105,7 @@ $width-container: 200px;
 .name-gauge {
   padding: 3px;
   text-align: center;
-  font-family: "VCR MONO";
+  font-family: $font;
   font-size: 27px;
   color: white;
 }
@@ -161,7 +162,7 @@ $width-container: 200px;
 
 .score_txt {
   font-size: 30px;
-  font-family: "VCR MONO";
+  font-family: $font;
 }
 
 @keyframes jump {
