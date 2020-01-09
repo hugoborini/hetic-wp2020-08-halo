@@ -50,19 +50,19 @@ function move_obj() {
 
 function random_obstacle() {
   setInterval(() => {
-    var ennemy = create("ennemy", 1500, 640);
+    var ennemy = create("ennemy", 1400, 640);
   }, 5000);
 }
 
 function random_item() {
   setInterval(() => {
-    var item = create("item", 1600, 600);
+    var item = create("item", 1700, 350);
   }, 9000);
 }
 
 function random_obj() {
   setInterval(() => {
-    var obj = create("obj", 1700, 660);
+    var obj = create("obj", 2000, 660);
   }, 11000);
 }
 
@@ -118,7 +118,7 @@ function jump() {
       character.classList.add("jump");
       setTimeout(() => {
         character.classList.remove("jump");
-      }, 1500);
+      }, 1000);
     }
   });
 }
