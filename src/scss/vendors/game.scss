@@ -135,12 +135,14 @@ p {
 }
 
 .item {
+  position: absolute;
   width: 27px;
   height: 70px;
   background-image: url("../assets/images/oxygenlarge.png");
 }
 
 .obj {
+  position: absolute;
   width: 78px;
   height: 61px;
   background-image: url("../assets/images/radiolarge.png");
