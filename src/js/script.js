@@ -1,6 +1,7 @@
-var life = 3;
+var life = 5;
 var score = 0;
 var nb_obj = 0;
+var intervalMove;
 
 var moveSpeed = 5;
 
@@ -9,6 +10,14 @@ document.addEventListener("keydown", function(e) {
     e.preventDefault();
   }
 });
+
+function createInterval() {
+  intervalMove = setInterval(function() {
+    moveElement(".ennemy");
+    moveElement(".item");
+    moveElement(".obj");
+  }, 10);
+}
 
 function create(str, valx, valy) {
   var element = oxo.elements.createElement({
@@ -23,12 +32,10 @@ function create(str, valx, valy) {
 }
 
 function moveElement(className) {
-  setInterval(() => {
-    var element = document.querySelectorAll(className);
-    for (let i = 0; i < element.length; i++) {
-      oxo.animation.move(element[i], "left", moveSpeed, true);
-    }
-  }, 10);
+  var element = document.querySelectorAll(className);
+  for (let i = 0; i < element.length; i++) {
+    oxo.animation.move(element[i], "left", moveSpeed, true);
+  }
 }
 
 function random_obstacle() {
@@ -115,11 +122,20 @@ function collision_obstacle() {
       ennemy[i].remove();
       life = life - 1;
 
+      if (life === 5) {
+        health.style.width = "200px";
+      }
+      if (life === 4) {
+        health.style.width = "160px";
+      }
+      if (life === 3) {
+        health.style.width = "120px";
+      }
       if (life === 2) {
-        health.style.width = "100px";
+        health.style.width = "80px";
       }
       if (life === 1) {
-        health.style.width = "50px";
+        health.style.width = "40px";
       }
       if (life === 0) {
         health.style.width = "0px";
@@ -136,17 +152,27 @@ function collision_item() {
     oxo.elements.onCollisionWithElement(character, item[i], function() {
       item[i].remove();
       life = life + 1;
+
+      if (life === 5) {
+        health.style.width = "200px";
+      }
+      if (life === 4) {
+        health.style.width = "160px";
+      }
       if (life === 3) {
-        health.style.width = "150px";
+        health.style.width = "120px";
       }
       if (life === 2) {
-        health.style.width = "100px";
+        health.style.width = "80px";
+      }
+      if (life === 1) {
+        health.style.width = "40px";
       }
       if (life === 0) {
         health.style.width = "0px";
       }
-      if (life > 3) {
-        life = 3;
+      if (life > 5) {
+        life = 5;
       }
     });
   }
@@ -206,13 +232,8 @@ function game() {
   random_obstacle();
   random_item();
   random_obj();
-  moveElement(".ennemy");
-  moveElement(".item");
-  moveElement(".obj");
+  createInterval();
 
-  // move_obstacle();
-  // move_item();
-  // move_obj();
   setInterval(() => {
     collision_obstacle();
     collision_item();
