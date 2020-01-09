@@ -1,6 +1,9 @@
+import { O_WRONLY } from "constants";
+
 var life = 5;
 var score = 0;
 var nbObj = 0;
+var nbObj2 = 0;
 var intervalMove;
 var randomObstacle;
 var randomItem;
@@ -190,19 +193,19 @@ function collision_obj() {
       nbObj = nbObj + 1;
 
       if (nbObj === 1) {
-        obj_gauge.style.width = "28px";
+        obj_gauge.style.width = "40px";
       }
       if (nbObj === 2) {
-        obj_gauge.style.width = "56px";
+        obj_gauge.style.width = "80px";
       }
       if (nbObj === 3) {
-        obj_gauge.style.width = "84px";
+        obj_gauge.style.width = "160px";
       }
       if (nbObj === 4) {
-        obj_gauge.style.width = "112px";
+        obj_gauge.style.width = "200px";
       }
       if (nbObj === 5) {
-        obj_gauge.style.width = "150px";
+        obj_gauge.style.width = "200px";
       }
     });
   }
@@ -215,22 +218,22 @@ function collision_obj2() {
   for (let i = 0; i < obj2.length; i++) {
     oxo.elements.onCollisionWithElement(character, obj2[i], function() {
       obj2[i].remove();
-      nbObj = nbObj + 1;
+      nbObj2 = nbObj2 + 1;
 
-      if (nbObj === 1) {
-        obj_gauge2.style.width = "28px";
+      if (nbObj2 === 1) {
+        obj_gauge2.style.width = "40px";
       }
-      if (nbObj === 2) {
-        obj_gauge2.style.width = "56px";
+      if (nbObj2 === 2) {
+        obj_gauge2.style.width = "80px";
       }
-      if (nbObj === 3) {
-        obj_gauge2.style.width = "84px";
+      if (nbObj2 === 3) {
+        obj_gauge2.style.width = "160px";
       }
-      if (nbObj === 4) {
-        obj_gauge2.style.width = "112px";
+      if (nbObj2 === 4) {
+        obj_gauge2.style.width = "200px";
       }
-      if (nbObj === 5) {
-        obj_gauge2.style.width = "150px";
+      if (nbObj2 === 5) {
+        obj_gauge2.style.width = "200px";
       }
     });
   }
@@ -274,11 +277,19 @@ function end() {
   console.log(restartButton);
 }
 
+function history() {
+  oxo.inputs.listenKeyOnce("enter", function() {
+    oxo.screens.loadScreen("game", function() {
+      game();
+    });
+  });
+}
+
 function home() {
   var playButton = document.querySelector(".play-button__button");
   playButton.addEventListener("click", function() {
-    oxo.screens.loadScreen("game", function() {
-      game();
+    oxo.screens.loadScreen("history", function() {
+      history();
     });
   });
 }
