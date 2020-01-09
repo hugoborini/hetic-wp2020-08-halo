@@ -38,7 +38,7 @@ function createInterval() {
 
   randomObj = setInterval(function() {
     create("obj", 2000, 660);
-  }, 12000);
+  }, 2000);
 
   randomObj2 = setInterval(function() {
     create("obj2", 1600, 660);
@@ -49,6 +49,8 @@ function createInterval() {
     clearAllObject(".item");
     clearAllObject(".obj");
     clearAllObject(".obj2");
+    console.log(nbObj2, nbObj);
+    win();
     lose();
   }, 10);
 
@@ -243,13 +245,29 @@ function timeScore() {
   var scoreTxt = document.querySelector(".score_txt");
   score = score + 1;
   console.log("score");
-  scoreTxt.innerHTML = "Score :" + score;
+  scoreTxt.innerHTML = "<p class='score_txt'>Score :" + score + "</p>";
+}
+
+function displayFinalScore() {
+  var scoreTxt = document.querySelector(".end--score");
+  scoreTxt.innerHTML =
+    "<div class='end--score'><p>Votre Score :" + score + "</p></div>";
 }
 
 function lose() {
   if (life === 0) {
     oxo.screens.loadScreen("end", function() {
       end();
+      clearAllInterval();
+    });
+  }
+}
+
+function win() {
+  if (nbObj === 5 && nbObj2 === 5) {
+    console.log("win");
+
+    oxo.screens.loadScreen("win", function() {
       clearAllInterval();
     });
   }
@@ -268,6 +286,7 @@ oxo.screens.loadScreen("home", function() {
 
 function end() {
   var restartButton = document.querySelector(".restart");
+  displayFinalScore();
   restartButton.addEventListener("click", function() {
     life = 5;
     oxo.screens.loadScreen("home", function() {
