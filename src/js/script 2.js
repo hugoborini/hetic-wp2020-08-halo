@@ -50,7 +50,7 @@ function move_obj() {
 
 function random_obstacle() {
   setInterval(() => {
-    var ennemy = create("ennemy", 1500, 640);
+    var ennemy = create("ennemy", 1500, 610);
   }, 5000);
 }
 
@@ -62,7 +62,7 @@ function random_item() {
 
 function random_obj() {
   setInterval(() => {
-    var obj = create("obj", 1700, 660);
+    var obj = create("obj", 1700, 610);
   }, 11000);
 }
 
@@ -219,7 +219,7 @@ function lose() {
 
 function game() {
   var character = document.querySelector(".character");
-  oxo.animation.setPosition(character, { x: 100, y: 500 });
+  oxo.animation.setPosition(character, { x: 100, y: 480 });
   random_obstacle();
   random_item();
   random_obj();
