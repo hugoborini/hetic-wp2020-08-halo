@@ -1,3 +1,24 @@
+// BACKGROUND
+
+@font-face {
+  font-family: "VCR MONO";
+  src: url(../assets/VCR_OSD_MONO_1.001.ttf);
+}
+
+@mixin display-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin obj-gauge {
+  width: 0px;
+  height: 30px;
+  border-radius: $border-radius;
+}
+
+$border-radius: 15px;
+$width-container: 200px;
+
 .multi-background {
   position: absolute;
   width: 100%;
@@ -12,23 +33,80 @@
   z-index: -1;
 }
 
-.header {
+.container-jauge {
+  @include display-column();
+}
+
+.box {
+  position: absolute;
+  z-index: 1;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.container-jauge:nth-child(1) {
+  flex: 1;
+}
+.container-image:nth-child(2) {
+  flex: 0.3;
+}
+.score:nth-child(3) {
+  flex: 3;
+}
+.container-image-air:nth-child(4) {
+  flex: 1;
+}
+.container-jauge:nth-child(5) {
+  flex: 1;
+}
+
+.container-image {
+  @include display-column();
+}
+
+.image {
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .container {
   height: 30px;
-  width: 150px;
-  background-color: wheat;
-  left: 30px;
+  width: $width-container;
+  background-color: rgb(145, 142, 142);
+  margin: 20px;
+  border-radius: $border-radius;
+}
+
+.obj_gauge {
+  @include obj-gauge();
+  background-color: rgba(245, 242, 56, 0.8);
+}
+
+.obj_gauge2 {
+  @include obj-gauge();
+  background-color: rgba(114, 236, 114, 0.8);
+}
+
+.obj_gauge3 {
+  @include obj-gauge();
+  background-color: rgba(250, 100, 90, 0.8);
 }
 
 .health {
   height: 30px;
-  width: 150px;
-  background-color: red;
-  position: absolute;
+  width: $width-container;
+  background-color: rgba(90, 245, 250, 0.8);
+  border-radius: $border-radius;
+}
+
+p {
+  padding: 3px;
+  text-align: center;
+  font-family: "VCR MONO";
+  font-size: 27px;
+  color: white;
 }
 
 .character {
@@ -52,35 +130,27 @@
 .ennemy {
   position: absolute;
   background-image: url("../assets/images/rocher01.png");
-  width: 108px;
-  height: 79px;
+  width: 99px;
+  height: 84px;
 }
 
 .item {
-  width: 39px;
-  height: 101px;
-  background-image: url("../assets/images/oxygen.png");
-  transform: rotate(20deg);
+  width: 27px;
+  height: 70px;
+  background-image: url("../assets/images/oxygenlarge.png");
 }
 
 .obj {
-  width: 113px;
-  height: 85px;
-  background-image: url("../assets/images/radio.png");
+  width: 78px;
+  height: 61px;
+  background-image: url("../assets/images/radiolarge.png");
 }
-
 .score {
-  margin-left: 200px;
+  margin-top: 10px;
 }
 
 .score_txt {
   font-size: 30px;
-}
-
-.obj_gauge {
-  width: 10px;
-  height: 30px;
-  background-color: yellow;
 }
 
 @keyframes jump {
@@ -88,7 +158,7 @@
     top: 0px;
   }
   50% {
-    top: -270px;
+    top: -230px;
   }
   100% {
     top: 0px;
