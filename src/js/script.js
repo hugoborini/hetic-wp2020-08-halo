@@ -1,5 +1,3 @@
-//import { O_WRONLY } from "constants";
-
 var life = 5;
 var score = 0;
 var nbObj = 0;
@@ -198,16 +196,16 @@ function collision_obj() {
       nbObj = nbObj + 1;
 
       if (nbObj === 1) {
-        obj_gauge.style.width = "40px";
+        obj_gauge.style.width = "33px";
       }
       if (nbObj === 2) {
-        obj_gauge.style.width = "80px";
+        obj_gauge.style.width = "66px";
       }
       if (nbObj === 3) {
-        obj_gauge.style.width = "160px";
+        obj_gauge.style.width = "99px";
       }
       if (nbObj === 4) {
-        obj_gauge.style.width = "200px";
+        obj_gauge.style.width = "132px";
       }
       if (nbObj === 5) {
         obj_gauge.style.width = "200px";
@@ -226,16 +224,16 @@ function collision_obj2() {
       nbObj2 = nbObj2 + 1;
 
       if (nbObj2 === 1) {
-        obj_gauge2.style.width = "40px";
+        obj_gauge2.style.width = "33px";
       }
       if (nbObj2 === 2) {
-        obj_gauge2.style.width = "80px";
+        obj_gauge2.style.width = "66px";
       }
       if (nbObj2 === 3) {
-        obj_gauge2.style.width = "160px";
+        obj_gauge2.style.width = "99px";
       }
       if (nbObj2 === 4) {
-        obj_gauge2.style.width = "200px";
+        obj_gauge2.style.width = "132px";
       }
       if (nbObj2 === 5) {
         obj_gauge2.style.width = "200px";
