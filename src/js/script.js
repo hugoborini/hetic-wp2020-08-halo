@@ -110,8 +110,11 @@ function clearAllObject(className) {
 
 function jump() {
   var character = document.querySelector(".character");
+  var soundJump = document.querySelector(".soundJump");
+
   oxo.inputs.listenKey("space", function() {
     if (!character.classList.contains("jump")) {
+      soundJump.play();
       character.classList.add("jump");
       setTimeout(() => {
         character.classList.remove("jump");
@@ -155,8 +158,10 @@ function collision_item() {
   var character = document.querySelector(".character");
   var item = document.querySelectorAll(".item");
   var health = document.querySelector(".health");
+  var soundAir = document.querySelector(".soundAir");
   for (let i = 0; i < item.length; i++) {
     oxo.elements.onCollisionWithElement(character, item[i], function() {
+      soundAir.play();
       item[i].remove();
       life = life + 1;
 
