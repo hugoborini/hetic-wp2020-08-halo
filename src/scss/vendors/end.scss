@@ -3,8 +3,9 @@
   src: url(../assets/VCR_OSD_MONO_1.001.ttf);
 }
 
-body {
+body.end {
   background-color: rgb(207, 86, 76);
+  height: 100vh;
 }
 
 .plannet {
