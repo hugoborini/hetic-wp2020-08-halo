@@ -1,4 +1,4 @@
-import { O_WRONLY } from "constants";
+//import { O_WRONLY } from "constants";
 
 var life = 5;
 var score = 0;
@@ -13,8 +13,6 @@ var clearAll;
 var collisionInterval;
 var scoreInterval;
 
-var moveSpeed = 5;
-
 document.addEventListener("keydown", function(e) {
   if (e.keyCode === 32) {
     e.preventDefault();
@@ -23,26 +21,26 @@ document.addEventListener("keydown", function(e) {
 
 function createInterval() {
   intervalMove = setInterval(function() {
-    moveElement(".ennemy");
-    moveElement(".item");
-    moveElement(".obj");
-    moveElement(".obj2");
+    moveElement(".ennemy", 6);
+    moveElement(".item", 10);
+    moveElement(".obj", 8);
+    moveElement(".obj2", 8);
   }, 10);
 
   randomObstacle = setInterval(function() {
     create("ennemy", 1400, 640);
-  }, 5000);
+  }, 3000);
   randomItem = setInterval(function() {
-    create("item", 1700, 350);
-  }, 9000);
+    create("item", 1450, 350);
+  }, 7000);
 
   randomObj = setInterval(function() {
     create("obj", 2000, 660);
-  }, 2000);
+  }, 5000);
 
   randomObj2 = setInterval(function() {
     create("obj2", 1600, 660);
-  }, 2000);
+  }, 8000);
 
   clearAll = setInterval(function() {
     clearAllObject(".ennemy");
@@ -88,10 +86,10 @@ function create(str, valx, valy) {
   return element;
 }
 
-function moveElement(className) {
+function moveElement(className, int) {
   var element = document.querySelectorAll(className);
   for (let i = 0; i < element.length; i++) {
-    oxo.animation.move(element[i], "left", moveSpeed, true);
+    oxo.animation.move(element[i], "left", int, true);
   }
 }
 
@@ -249,7 +247,6 @@ function collision_obj2() {
 function timeScore() {
   var scoreTxt = document.querySelector(".score_txt");
   score = score + 1;
-  console.log("score");
   scoreTxt.innerHTML = "<p class='score_txt'>Score :" + score + "</p>";
 }
 
@@ -257,6 +254,13 @@ function displayFinalScore() {
   var scoreTxt = document.querySelector(".end--score");
   scoreTxt.innerHTML =
     "<div class='end--score'><p>Votre Score :" + score + "</p></div>";
+}
+
+function displayFinalScorewin() {
+  var score_txt = document.querySelector(".htp__txt--win");
+
+  score_txt.innerHTML =
+    "<p class='htp__txt--win'> Votre Score :" + score + "</p>";
 }
 
 function lose() {
@@ -269,11 +273,21 @@ function lose() {
 }
 
 function win() {
+  if (nbObj > 5) {
+    nbObj = 5;
+  }
+  if (nbObj2 > 5) {
+    nbObj2 = 5;
+  }
   if (nbObj === 5 && nbObj2 === 5) {
-    console.log("win");
-
     oxo.screens.loadScreen("win", function() {
+      displayFinalScorewin();
       clearAllInterval();
+      oxo.inputs.listenKeyOnce("enter", function() {
+        oxo.screens.loadScreen("home", function() {
+          home();
+        });
+      });
     });
   }
 }
@@ -298,7 +312,6 @@ function end() {
       home();
     });
   });
-  console.log(restartButton);
 }
 
 function history() {
