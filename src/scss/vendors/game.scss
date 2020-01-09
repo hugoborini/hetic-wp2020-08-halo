@@ -20,6 +20,7 @@ $border-radius: 15px;
 $width-container: 200px;
 $font-family: "VCR MONO";
 
+
 .multi-background {
   position: absolute;
   width: 100%;
@@ -163,9 +164,12 @@ $font-family: "VCR MONO";
 }
 
 .score_txt {
+
   font-size: 50px;
   font-family: $font-family;
   color: white;
+
+
 }
 
 @keyframes jump {
