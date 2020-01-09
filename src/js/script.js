@@ -2,7 +2,7 @@ var life = 5;
 var score = 0;
 var nb_obj = 0;
 
-var move = 5;
+var moveSpeed = 5;
 
 document.addEventListener("keydown", function(e) {
   if (e.keyCode === 32) {
@@ -21,29 +21,12 @@ function create(str, valx, valy) {
 
   return element;
 }
-function move_obstacle() {
-  setInterval(() => {
-    var ennemy = document.querySelectorAll(".ennemy");
-    for (let i = 0; i < ennemy.length; i++) {
-      oxo.animation.move(ennemy[i], "left", move, true);
-    }
-  }, 10);
-}
 
-function move_item() {
+function moveElement(className) {
   setInterval(() => {
-    var item = document.querySelectorAll(".item");
-    for (let i = 0; i < item.length; i++) {
-      oxo.animation.move(item[i], "left", move, true);
-    }
-  }, 10);
-}
-
-function move_obj() {
-  setInterval(() => {
-    var obj = document.querySelectorAll(".obj");
-    for (let i = 0; i < obj.length; i++) {
-      oxo.animation.move(obj[i], "left", move, true);
+    var element = document.querySelectorAll(className);
+    for (let i = 0; i < element.length; i++) {
+      oxo.animation.move(element[i], "left", moveSpeed, true);
     }
   }, 10);
 }
@@ -242,9 +225,13 @@ function game() {
   random_obstacle();
   random_item();
   random_obj();
-  move_obstacle();
-  move_item();
-  move_obj();
+  moveElement(".ennemy");
+  moveElement(".item");
+  moveElement(".obj");
+
+  // move_obstacle();
+  // move_item();
+  // move_obj();
   setInterval(() => {
     collision_obstacle();
     collision_item();
