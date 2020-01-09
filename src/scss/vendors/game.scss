@@ -18,6 +18,7 @@
 
 $border-radius: 15px;
 $width-container: 200px;
+$font-family: "VCR MONO";
 
 .multi-background {
   position: absolute;
@@ -104,7 +105,7 @@ $width-container: 200px;
 .name-gauge {
   padding: 3px;
   text-align: center;
-  font-family: "VCR MONO";
+  font-family: $font-family;
   font-size: 27px;
   color: white;
 }
@@ -157,10 +158,14 @@ $width-container: 200px;
 
 .score {
   margin-top: 10px;
+  display: flex;
+  justify-content: center;
 }
 
 .score_txt {
-  font-size: 30px;
+  font-size: 50px;
+  font-family: $font-family;
+  color: white;
 }
 
 @keyframes jump {
@@ -168,7 +173,7 @@ $width-container: 200px;
     top: 0px;
   }
   50% {
-    top: -230px;
+    top: -270px;
   }
   100% {
     top: 0px;
