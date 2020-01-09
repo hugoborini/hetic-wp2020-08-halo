@@ -131,13 +131,14 @@ body.history {
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
-  margin-top: 500px;
+  margin-top: 400px;
   margin-left: 50px;
 }
 
 .htp--oxygen {
   display: flex;
   flex-direction: row;
+  padding: 10px;
 }
 
 .htp__txt {
@@ -147,7 +148,7 @@ body.history {
 }
 
 .history-item {
-  height: 50px;
+  height: 40px;
   padding-left: 10px;
   padding-right: 10px;
 }
